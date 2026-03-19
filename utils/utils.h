@@ -4,7 +4,6 @@
 
 char* scrivi();
 int file_exists(char *path);
-void hash_object(char *nameFile, char **hashed_string, unsigned long long int *final_size);
 unsigned long long int get_file_size(FILE *file);
 void nuke_directory(const char *path);
 int dir_exists(char *dir_name);

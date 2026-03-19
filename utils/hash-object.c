@@ -22,12 +22,12 @@ char *create_new_string(char *type, unsigned long long int *size, FILE *file){
   return result;
 }
 
-void hash_object(char *nameFile, char **hashed_string, unsigned long long int *final_size){
-  if(file_exists(nameFile)){
-    FILE *file = fopen(nameFile, "rb");
+void hash_object(char **nameFile, char **hashed_string, unsigned long long int *final_size){
+  if(file_exists(*nameFile)){
+    FILE *file = fopen(*nameFile, "rb");
     *final_size = get_file_size(file);
     char *newString = create_new_string("blob", final_size, file);
     *hashed_string = SHA_1(newString, *final_size);
-    free(newString);
+    *nameFile = newString;
   }
 }

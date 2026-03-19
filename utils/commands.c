@@ -3,6 +3,7 @@
 #include <zlib.h>
 #include "utils.h"
 #include "init.h"
+#include "hash-object.h"
 #define COMMAND_OK 0
 #define COMMAND_NOT_OK 1
 
@@ -19,7 +20,7 @@ int cmd_hash_object(int argc, char *argv[], char *flag){
   
   if (file_exists(file_name)) {
     unsigned long long int size = 0;
-    hash_object(file_name, &hash_value, &size);
+    hash_object(&file_name, &hash_value, &size);  // File_name will have the new header: blob size\0file_content
     printf("%s\n", hash_value); // Final hash
     if(flag != NULL){
       char path[256] = ".irongit/objects/";
@@ -27,7 +28,7 @@ int cmd_hash_object(int argc, char *argv[], char *flag){
       create_dir(path);
       strcat(path, "/");
       strncat(path, hash_value + 2, 38);
-      compress_and_save((unsigned char*)hash_value, size, path);
+      compress_and_save((unsigned char*)file_name, size, path);
     }
     free(hash_value); 
   } else {
