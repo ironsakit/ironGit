@@ -15,7 +15,7 @@ Currently, `irongit` supports repository initialization, raw object database man
 | <nobr>`irongit cat-file -p <hash>`</nobr> | Pretty-prints the uncompressed content of a specific object. |
 | <nobr>`irongit cat-file -s <hash>`</nobr> | Prints the size of the object in bytes. |
 | <nobr>`irongit cat-file -t <hash>`</nobr> | Prints the type of the object (e.g., `blob`, `tree`). |
-| <nobr>`irongit add <file>`</nobr> | Stages a single file. Generates its Blob and updates/creates the binary `.ironGit/index` file. |
+| <nobr>`irongit add <file>`</nobr> | Stages one or more files. Generates its Blob and updates/creates the binary `.ironGit/index` file. |
 | <nobr>`irongit add .`</nobr> | Recursively scans the directory tree, applies `.irongitignore` rules, sorts files alphabetically, and writes the entire `.ironGit/index` binary in one go. |
 | <nobr>`irongit write-tree`</nobr> | Parses the `.ironGit/index` binary file to generate and store a `tree` object representing the current directory structure. |
 
