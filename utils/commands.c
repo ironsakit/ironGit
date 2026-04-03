@@ -5,6 +5,7 @@
 #include "hash-object.h"
 #include <string.h>
 #include "index.h"
+#include "tree.h"
 
 #define COMMAND_OK 0
 #define COMMAND_NOT_OK 1
@@ -114,7 +115,7 @@ int cmd_cat_file(int argc, char *argv[]){
         free(text);
     }else
     {
-        printf("Fatal: Not a valid object name %s\n", hash);
+        fprintf(stderr,"Fatal: Not a valid object name %s\n", hash);
         return COMMAND_NOT_OK;
     }
     return COMMAND_OK;
@@ -132,7 +133,11 @@ int cmd_add(int argc, char *argv[])
 
 int cmd_write_tree(int argc, char *argv[])
 {
-
+    if (argc > 3)
+    {
+        printf("Usage: irongit write-tree\n");
+    }
+    if (create_tree() == COMMAND_NOT_OK) return COMMAND_NOT_OK;
     return COMMAND_OK;
 }
 
